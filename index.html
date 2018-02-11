@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="main.css"></link>
+</head>
+
+
+<body >
+	<button id="defaultPage" class="tablink" onclick="openPage('About', this, '#757575')">About</button>
+	<button class="tablink" onclick="openPage('createnewTask', this, '#757575')" id="defaultOpen">create new Task</button>
+	<button id="task" class="tablink" onclick="openPage('Tasklist', this, '#757575')">Tasklist</button>
+	<button class="tablink" onclick="openPage('Settings', this, '#757575')">Settings</button>
+
+	<div id="Tasklist" class="tabcontent">
+		<div id="main"></div>
+	</div>
+
+
+	<div id="createnewTask" class="tabcontent">
+
+		<div>
+			<div class="form-group col-md-6">
+				<label for="taskID">Taskname:</label>
+				<input type="text" class="form-control" id="taskID">
+			</div>
+			<div name="left" class = "col-md-6">
+				<h4>JASON-Code</h4>
+				<div class="h-75 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 75%</div>
+			</div>
+	
+			<div name="right" class="col-md-6">
+	
+				<div name="oben" class="col-sm-6">
+					<h4>Settings</h4>
+		
+					<div class="checkbox">
+						<label><input type="checkbox" value="">kontinuierlich</label>
+					</div>
+		
+					<div class="checkbox">
+						<label><input type="checkbox" value="">manuell</label>
+					</div>
+			
+					<div class="checkbox disabled">
+						<label><input type="checkbox" value="">cronjob</label>
+					</div>
+					<input type="text"></input>
+				</div>
+				<div name="unten" class="col-sm-6">
+					<h4>Execute-Code</h4>			
+					<h6>Actionlist</h4>
+					<ul></ul>
+					<div>
+						<input type="number"></input>
+						<input type="combobox"></input>
+						<button type="button"  class="btn">add</button>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<button type="button" class="btn btn-info btn-block align-self-end" onclick="addnewTaskButton()">create new Task</button>
+	</div>
+</div>
+
+
+
+<div id="Settings" class="tabcontent">
+</div>
+
+<div id="About" class="tabcontent">
+  <h3>Intelligente Taskverwaltung</h3>
+  <p>superkrasser taskmanager</p>
+</div>
+</body>
+
+<script>document.getElementById('defaultPage').click();</script>
+</html> 
+
