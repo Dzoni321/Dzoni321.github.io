@@ -7,7 +7,7 @@ body, html {
     font-family: Arial;
 	background-color: #b1bace;
 	 position: fixed; 
-    overflow-y: scroll;
+    overflow: auto;
     width: 100%;
 	
 }

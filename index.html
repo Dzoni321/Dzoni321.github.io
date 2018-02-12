@@ -8,30 +8,37 @@
   <script src="main.js"></script>
   <link rel="stylesheet" href="main.css"></link>
 </head>
-
-
 <body>
-	<div class='container'>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Taskmanager</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#" id="defaultPage" onclick="openPage('About', this, '#757575')">Home</a></li>
+				<li><a href="#" onclick="openPage('newTask', this, '#757575')">new Task</a></li>
+				<li><a href="#" id="task" onclick="openPage('Tasklist', this, '#757575')">Tasklist</a></li>
+				<li><a href="#" onclick="openPage('Settings', this, '#757575')">Settings</a></li>
+			</ul>
+		</div>
+	</nav>
 
-		<button id="defaultPage" class="tablink" onclick="openPage('About', this, '#757575')">About</button>
-		<button class="tablink" onclick="openPage('createnewTask', this, '#757575')">create new Task</button>
-		<button id="task" class="tablink" onclick="openPage('Tasklist', this, '#757575')">Tasklist</button>
-		<button class="tablink" onclick="openPage('Settings', this, '#757575')">Settings</button>
-<br clear="all">
-		<div id="About" class="tabcontent">
-			<div class='col-md-12'>
-				<pre class="Settings">
+	<div class='container col-xs-12'>
+		<br clear="all">
+			<div id="About" class="tabcontent">
+				<div class='col-xs-12'>
+					<pre class="Settings">
 Intelligente Taskverwaltung
 superkrasser taskmanager Beschreibung und anderes Zeug
-				</pre>
+					</pre>
+				</div>
 			</div>
-		</div>
-		
-		<div id="createnewTask" class="tabcontent">
-			<div id="newTaskDiv">
-				<div name="left" class = "col-sm-7 left">
-					<h4>JSON-Code</h4>
-					<pre class="Settings">
+			
+			<div id="newTask" class="tabcontent">
+				<div id="newTaskDiv">
+					<div name="left" class = "col-sm-7 left">
+						<h4>JSON-Code</h4>
+						<pre class="Settings">
 {
 "private": true,
 "scripts": {
@@ -53,58 +60,64 @@ superkrasser taskmanager Beschreibung und anderes Zeug
 "vue": "^2.5.7"
 }
 }
-					</pre>
+						</pre>
+					</div>
+			
+					<div name="right" class="col-sm-5">
+					
+						<label for="taskID">Taskname:</label>
+						<input type="text" class="form-control taskname" id="taskID">
+					
+						<div name="oben" >
+							<h4>Settings</h4>	
+							<label class="checkbox-inline"><input type="checkbox" value="">kontinuierlich</label>
+							<label class="checkbox-inline"><input type="checkbox" value="">manuell</label>
+							<label class="checkbox-inline"><input type="checkbox" value="">cronjob</label>
+						</div>
+						<input type="text" class="cronInput"></input>
+						
+						<div name="unten" class="test">
+							<h4>Execute-Code</h4>			
+							<h6>Actionlist</h4>
+							<ul></ul>
+							<div class='bottomElement'>
+								<input type="number" class="selectNumber"></input>
+								<select type="combobox" class="exitcodeBox">
+									<option>reboot</option>
+									<option>shutdown</option>
+									<option>tg-message</option>
+								</select>
+								<button type="button" class="btn" onclick="newAction()">add</button>
+							</div>	
+						</div>
+						
+					</div>
 				</div>
-		
-				<div name="right" class="col-sm-5">
-				
-					<label for="taskID">Taskname:</label>
-					<input type="text" class="form-control taskname" id="taskID">
-				
-					<div name="oben" >
-						<h4>Settings</h4>	
-						<label class="checkbox-inline"><input type="checkbox" value="">kontinuierlich</label>
-						<label class="checkbox-inline"><input type="checkbox" value="">manuell</label>
-						<label class="checkbox-inline"><input type="checkbox" value="">cronjob</label>
+				<button type="button" class="btn btn-info btn-block align-self-end" onclick="newTask('affe')">create new Task</button>
+			</div>
+
+			<div id="Tasklist" class="tabcontent">
+				<form class="navbar-form navbar-left" action="/action_page.php">
+					<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search">
 					</div>
-					<input type="text" class="cronInput"></input>
-					
-					<div name="unten" class="test">
-						<h4>Execute-Code</h4>			
-						<h6>Actionlist</h4>
-						<ul></ul>
-						<div class='bottomElement'>
-							<input type="number" class="selectNumber"></input>
-							<select type="combobox" class="exitcodeBox">
-								<option>reboot</option>
-								<option>shutdown</option>
-								<option>tg-message</option>
-							</select>
-							<button type="button" class="btn" onclick="newAction()">add</button>
-						</div>	
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<div id="mainTaskList" ></div>
+			</div>
+
+			<div id="Settings" class="tabcontent">
+				<div class="col-md-12">
+					<pre class="Settings">Alle Settings die so ein Affenserver haben kann</pre>
+					<div class='btn-group'>
+						<button class='btn btn-primary'>Export Task(s)</button>
+						<button class='btn btn-primary'>Export All</button>
+						<button class='btn btn-primary'>Export Settings</button>
+						<button class='btn btn-primary'>Import</button>
 					</div>
-					
 				</div>
 			</div>
-			<button type="button" class="btn btn-info btn-block align-self-end" onclick="newTask('affe')">create new Task</button>
-		</div>
-
-		<div id="Tasklist" class="tabcontent">
-			<div id="mainTaskList" ></div>
-		</div>
-
-		<div id="Settings" class="tabcontent">
-			<div class="col-md-12">
-				<pre class="Settings">Alle Settings die so ein Affenserver haben kann</pre>
-				<div class='btn-group'>
-					<button class='btn btn-primary'>Export Task(s)</button>
-					<button class='btn btn-primary'>Export All</button>
-					<button class='btn btn-primary'>Export Settings</button>
-					<button class='btn btn-primary'>Import</button>
-				</div>
-			</div>
-		</div>
-		<footer>MaMoNi</footer>
+			<footer>MaMoNi</footer>
 		</br>
 	</div>
 </body>
