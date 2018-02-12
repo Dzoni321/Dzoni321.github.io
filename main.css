@@ -5,7 +5,14 @@ body, html {
     margin: 0;
 	 line-height: 2;
     font-family: Arial;
-	background-color: gray
+	background-color: #b1bace;
+	 position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+}
+footer{
+	background-color: #555;
+	color: white;
 }
 
 .tablink:hover {
@@ -28,20 +35,60 @@ body, html {
 .tabcontent {
     color: white;
     display: none;
-    padding: 100px 20px;
-    height: 100%;
+    padding: 30px 20px;
 	background-color: #757575;
+	display:block;
+	overflow:auto;
+	min-height= 100%;
 }
 
-footer {
- background-color: #555;
- color: white;
+.tabcontentInner{
+	background-color: white;
+	min-height: 100%;
+	color: black;
 }
 
 .btn {
 background-color: #01579b;
 border-width:1px;
 }
+
+.taskname{
+		min-width: 100%;
+	
+}
+
+.cronInput{
+	min-width: 100%;
+	min-height: 100%;
+	color:black;
+}
+
+.Settings{
+	min-width: 100%;
+	min-height: 100%;
+	color: black;
+	
+    resize: none;
+    overflow: auto;
+}
+
+.selectNumber{
+	width: 40px;
+	height: 30px;
+	color: black;
+}
+
+.jsonInput{
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.exitcodeBox{
+	color: black;
+	height: 30px;
+}
+
 #Tasklist {background-color: #757575;}
 #createnewTask {background-color: #757575;}
 #Settings {background-color: #757575;}

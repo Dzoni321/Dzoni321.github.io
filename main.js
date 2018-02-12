@@ -1,6 +1,7 @@
 var id = 1;
 
 
+
 function addnewTaskButton(){
 //createnewTaskButton
 	var newTaskButton = document.createElement('button');
@@ -12,25 +13,25 @@ function addnewTaskButton(){
 
 //ButtonGroupDiv
 	var buttonGroupDiv = document.createElement('div');
-	buttonGroupDiv.classList.add('btn-group');
+	buttonGroupDiv.classList.add('btn-group','btn-group-justified');
 	
 		//create RemoveButton
-			var removeButton = document.createElement('button');
-			removeButton.setAttribute('type', 'button');
+			var removeButton = document.createElement('a');
+			//removeButton.setAttribute('type', 'button');
 			removeButton.classList.add('btn','btn-primary');
 			removeButton.innerHTML = 'Remove Task';
 			removeButton.addEventListener("click", function(){
-				var thisParent = this.parentNode.parentNode;
-				document.getElementById('main').removeChild(thisParent);	
+				var thisParent = this.parentNode.parentNode.parentNode;
+				document.getElementById('mainTaskList').removeChild(thisParent);				
 			});
 
 		//create SaveButton
-			var saveButton = document.createElement('button');
+			var saveButton = document.createElement('a');
 			saveButton.innerHTML = 'Save';
 			saveButton.classList.add('btn','btn-primary');
 	
 		//create ExecuteNowButton
-			var executeNowButton = document.createElement('button');
+			var executeNowButton = document.createElement('a');
 			executeNowButton.innerHTML = 'Execute Now';	
 			executeNowButton.classList.add('btn','btn-primary');
 	
@@ -41,7 +42,7 @@ function addnewTaskButton(){
 //create innerLeftDiv	
 	var leftDiv = document.createElement('div');
 	leftDiv.classList.add('links');
-	leftDiv.innerHTML = '<h4>JASON-Script</h4>';	
+	leftDiv.innerHTML = '<h4>JSON-Script</h4>';	
 	//TaskCode
 		var taskCode = document.createElement('pre');
 		taskCode.classList.add('jsonInput')
@@ -154,13 +155,14 @@ function addnewTaskButton(){
 	innerMainDiv.classList.add('collapse');
 	innerMainDiv.setAttribute('id', 'content'+id);
 //create divTask mainDivChild
-	var divTask = document.createElement('div');
+	
 	
 	divTask.appendChild(newTaskButton);
 	divTask.appendChild(innerMainDiv);
+	divTask.setAttribute('id','mongo'+id);
 	newTaskButton.setAttribute('data-toggle','collapse');
     newTaskButton.setAttribute('data-target','#content'+id);
-	document.getElementById('main').appendChild(divTask);
+	document.getElementById('mainTaskList').appendChild(divTask);
 	
 	var t = document.getElementById('task');
 	t.click();
@@ -183,7 +185,44 @@ function openPage(pageName,elmnt,color) {
 
 }
 
-//function newTask()
-//var taskList.document.getElementById('Tasklist');
-//var div = document.getElementById('newTaskDiv');
+function newTask(name){
+var newDiv=document.createElement('div');
+var a = document.getElementById('newTaskDiv')
+var newTaskSettings = a.cloneNode(true);
+newTaskSettings.classList.add('collapse');
+newTaskSettings.setAttribute('id','content'+id);
+var newTaskButton = document.createElement('button');
+	newTaskButton.classList.add('btn','btn-info','btn-block');
+	newTaskButton.setAttribute('type', 'button');
+	newTaskButton.innerHTML = name;
+	newTaskButton.setAttribute('data-toggle','collapse');
+    newTaskButton.setAttribute('data-target','#content'+id);
+	
+	newDiv.appendChild(newTaskButton);
+	newDiv.appendChild(newTaskSettings);
+	document.getElementById('mainTaskList').appendChild(newDiv);
+	var t = document.getElementById('task');
+	t.click();
+	newTaskButton.click();
+	id++
+}
+
+function newAction(){
+	var parentNode1 = this.parentNode;
+	var node = parentNode1.childNodes[1].value;
+	var selection = this.previousSibling;
+	//var action = selection.options[selection.selectedIndex].text;
+	var exitCode = selection.previousSibling.value;
+	var actionList = this.parentNode.parentNode.childNodes[1];
+	var newAction = document.createElement('li');
+	newAction.innerHTML = exitCode + ": " + action;
+	var remove = document.createElement('button');
+	remove.addEventListener("click", function() {
+					var thisParent = this.parentNode;
+					var thatParent = thisParent.parentNode;
+					thatParent.removeChild(thisParent);
+				});
+	actionList.appendChild(node);
+}
+
 

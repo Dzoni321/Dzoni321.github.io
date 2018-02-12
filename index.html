@@ -10,82 +10,104 @@
 </head>
 
 
-<body >
-	<button id="defaultPage" class="tablink" onclick="openPage('About', this, '#757575')">About</button>
-	<button class="tablink" onclick="openPage('createnewTask', this, '#757575')" id="defaultOpen">create new Task</button>
-	<button id="task" class="tablink" onclick="openPage('Tasklist', this, '#757575')">Tasklist</button>
-	<button class="tablink" onclick="openPage('Settings', this, '#757575')">Settings</button>
+<body>
+	<div class='container'>
 
-	<div id="Tasklist" class="tabcontent">
-		<div id="main"></div>
-	</div>
+		<button id="defaultPage" class="tablink" onclick="openPage('About', this, '#757575')">About</button>
+		<button class="tablink" onclick="openPage('createnewTask', this, '#757575')">create new Task</button>
+		<button id="task" class="tablink" onclick="openPage('Tasklist', this, '#757575')">Tasklist</button>
+		<button class="tablink" onclick="openPage('Settings', this, '#757575')">Settings</button>
 
-
-	<div id="createnewTask" class="tabcontent">
-
-		<div id="newTaskDiv">
-			<div class="form-group col-md-6">
-				<label for="taskID">Taskname:</label>
-				<input type="text" class="form-control" id="taskID">
+		<div id="About" class="tabcontent">
+			<div class='col-md-12'>
+				<textarea rows="21" class="Settings">
+Intelligente Taskverwaltung
+superkrasser taskmanager Beschreibung und anderes Zeug
+				</textarea>
 			</div>
-			<div name="left" class = "col-md-6">
-				<h4>JASON-Code</h4>
-				<pre>.
-				.
-				.
-				.
-				.
-				.
-				.
-				.
-				.
-				</pre>
-			</div>
-	
-			<div name="right" class="col-md-6">
-	
-				<div name="oben" class="col-sm-6">
-					<h4>Settings</h4>
+		</div>
 		
-					<div class="checkbox">
-						<label><input type="checkbox" value="">kontinuierlich</label>
-					</div>
-		
-					<div class="checkbox">
-						<label><input type="checkbox" value="">manuell</label>
-					</div>
-			
-					<div class="checkbox disabled">
-						<label><input type="checkbox" value="">cronjob</label>
-					</div>
-					<input type="text"></input>
+		<div id="createnewTask" class="tabcontent">
+			<div id="newTaskDiv">
+				<div name="left" class = "col-sm-7 left">
+					<h4>JSON-Code</h4>
+					<textarea rows="18" class="Settings">
+{
+"private": true,
+"scripts": {
+"dev": "npm run development",
+"development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+"watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+"watch-poll": "npm run watch -- --watch-poll",
+"hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+"prod": "npm run production",
+"production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+},
+"devDependencies": {
+"axios": "^0.17",
+"bootstrap-sass": "^3.3.7",
+"cross-env": "^5.1",
+"jquery": "^3.2",
+"laravel-mix": "^1.0",
+"lodash": "^4.17.4",
+"vue": "^2.5.7"
+}
+}
+					</textarea>
 				</div>
-				<div name="unten" class="col-sm-6">
-					<h4>Execute-Code</h4>			
-					<h6>Actionlist</h4>
-					<ul></ul>
-					<div>
-						<input type="number"></input>
-						<input type="combobox"></input>
-						<button type="button"  class="btn">add</button>
-					</div>	
+		
+				<div name="right" class="col-sm-5">
+				
+					<label for="taskID">Taskname:</label>
+					<input type="text" class="form-control taskname" id="taskID">
+				
+					<div name="oben" >
+						<h4>Settings</h4>	
+						<label class="checkbox-inline"><input type="checkbox" value="">kontinuierlich</label>
+						<label class="checkbox-inline"><input type="checkbox" value="">manuell</label>
+						<label class="checkbox-inline"><input type="checkbox" value="">cronjob</label>
+					</div>
+					<input type="text" class="cronInput"></input>
+					
+					<div name="unten" class="test">
+						<h4>Execute-Code</h4>			
+						<h6>Actionlist</h4>
+						<ul></ul>
+						<div class='bottomElement'>
+							<input type="number" class="selectNumber"></input>
+							<select type="combobox" class="exitcodeBox">
+								<option>reboot</option>
+								<option>shutdown</option>
+								<option>tg-message</option>
+							</select>
+							<button type="button" class="btn" onclick="newAction()">add</button>
+						</div>	
+					</div>
+					
+				</div>
+			</div>
+			<button type="button" class="btn btn-info btn-block align-self-end" onclick="newTask('affe')">create new Task</button>
+		</div>
+
+		<div id="Tasklist" class="tabcontent">
+			<div id="mainTaskList" ></div>
+		</div>
+
+		<div id="Settings" class="tabcontent">
+			<div class="col-md-12">
+				<textarea rows="20" class="Settings"></textarea>
+				<div class='btn-group'>
+					<button class='btn btn-primary'>Export Task(s)</button>
+					<button class='btn btn-primary'>Export All</button>
+					<button class='btn btn-primary'>Export Settings</button>
+					<button class='btn btn-primary'>Import</button>
 				</div>
 			</div>
 		</div>
-		<button type="button" class="btn btn-info btn-block align-self-end" onclick="addnewTaskButton()">create new Task</button>
+		<footer>MaMoNi</footer>
 	</div>
-</div>
-
-
-
-<div id="Settings" class="tabcontent">
-</div>
-
-<div id="About" class="tabcontent">
-  <h3>Intelligente Taskverwaltung</h3>
-  <p>superkrasser taskmanager</p>
-</div>
 </body>
+
 
 <script>document.getElementById('defaultPage').click();</script>
 </html> 
