@@ -1,7 +1,5 @@
 var id = 1;
 
-
-
 function addnewTaskButton(){
 //createnewTaskButton
 	var newTaskButton = document.createElement('button');
