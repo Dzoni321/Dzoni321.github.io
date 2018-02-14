@@ -7,7 +7,7 @@ body, html {
     font-family: Arial;
 	background-color: #757575;
 	 position: fixed; 
-    overflow: auto;
+    overflow-y: scroll;
     width: 100%;
 	
 }
@@ -24,7 +24,6 @@ footer{
     padding: 0px 0px;
 	background-color: #757575;
 	display:block;
-	overflow:auto;
 	width: 100%;
 	height: 100%;
 }
@@ -44,8 +43,8 @@ border-width:1px;
 }
 
 
-.taskname{
-		min-width: 100%;
+.taskname, .btn-group{
+		width: 100%;
 	
 }
 
@@ -88,8 +87,5 @@ border-width:1px;
    background-color: #555;
    color: white;
    text-align: center;
+   white-space: nowrap;
 }
-#Tasklist {background-color: #757575;}
-#createnewTask {background-color: #757575;}
-#Settings {background-color: #757575;}
-#About {background-color: #757575 ;}

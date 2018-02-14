@@ -1,4 +1,5 @@
 var id = 1;
+var newTaskBlanco = document.getElementById('newTaskDiv');
 
 function addnewTaskButton(){
 //createnewTaskButton
@@ -12,7 +13,6 @@ function addnewTaskButton(){
 //ButtonGroupDiv
 	var buttonGroupDiv = document.createElement('div');
 	buttonGroupDiv.classList.add('btn-group','btn-group-justified');
-	
 		//create RemoveButton
 			var removeButton = document.createElement('a');
 			//removeButton.setAttribute('type', 'button');
@@ -168,59 +168,104 @@ function addnewTaskButton(){
 	id++;
 }
 
-function openPage(pageName,elmnt,color) {
+function openPage(pageName,elmnt) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-    //tablinks = document.getElementsByClassName("tablink");
-    //for (i = 0; i < tablinks.length; i++) {
-      //  tablinks[i].style.backgroundColor = "";
-    //}
+    tablinks = document.getElementsByClassName("topNav");
+    for (i = 0; i < tablinks.length; i++) {
+       tablinks[i].style.backgroundColor = "";
+	   tablinks[i].style.color = "";
+    }
     document.getElementById(pageName).style.display = "block";
-   // elmnt.style.backgroundColor = color;
+    elmnt.style.backgroundColor = "#45526e";
+	elmnt.style.color = "white";
 
 }
 
-function newTask(name){
+function newTask(){
+var taskname = document.getElementById('taskname').value;	
+	
+	if(taskname.length==0){
+		alert('Tasknamen eingeben');
+		return;
+	}
+	
 var newDiv=document.createElement('div');
-var a = document.getElementById('newTaskDiv')
-var newTaskSettings = a.cloneNode(true);
+var newTaskBlanko = document.getElementById('newTaskDiv')
+var newTaskSettings = newTaskBlanko.cloneNode(true);
 newTaskSettings.classList.add('collapse');
 newTaskSettings.setAttribute('id','content'+id);
 var newTaskButton = document.createElement('button');
 	newTaskButton.classList.add('btn','btn-info','btn-block');
 	newTaskButton.setAttribute('type', 'button');
-	newTaskButton.innerHTML = name;
+	newTaskButton.innerHTML = taskname;
 	newTaskButton.setAttribute('data-toggle','collapse');
     newTaskButton.setAttribute('data-target','#content'+id);
+
+	var buttonGroupDiv = document.createElement('div');
+	buttonGroupDiv.classList.add('btn-group', 'col-sm-12');
+	
+	var saveButton = document.createElement('button');
+	saveButton.setAttribute('type','button');
+	saveButton.innerHTML = 'Save';
+	saveButton.classList.add('btn','btn-primary');
+	//saveButton.addEventListener("click", function() {
+var executeNowButton = document.createElement('button');
+	executeNowButton.setAttribute('type','button');
+	executeNowButton.classList.add('btn','btn-primary');
+	executeNowButton.innerHTML = 'Execute Now';
+	//executeNowButton.addEventListener("click", function() {
+var deleteTaskButton = document.createElement('button');
+	deleteTaskButton.setAttribute('type','button');
+	deleteTaskButton.classList.add('btn','btn-primary');
+	deleteTaskButton.innerHTML = 'Delete';
+	deleteTaskButton.addEventListener("click", function() {
+		var mainDiv = this.parentNode.parentNode.parentNode.parentNode;
+		var thisParent = this.parentNode.parentNode.parentNode; 
+		mainDiv.removeChild(thisParent);
+	});
 	
 	newDiv.appendChild(newTaskButton);
+	buttonGroupDiv.appendChild(saveButton);
+	buttonGroupDiv.appendChild(executeNowButton);
+	buttonGroupDiv.appendChild(deleteTaskButton);
+	newTaskSettings.appendChild(buttonGroupDiv);
 	newDiv.appendChild(newTaskSettings);
+	
 	document.getElementById('mainTaskList').appendChild(newDiv);
 	var t = document.getElementById('task');
 	t.click();
-	newTaskButton.click();
+	
+	var btns =newTaskSettings.getElementsByClassName('removeAction');
+	for(var i =0;i<btns.length;i++){
+		
+	btns[i].addEventListener('click',function(){
+					this.parentNode.parentNode.removeChild(this.parentNode);
+					
+			});	
+	}
+	//newTaskButton.click();
 	id++
 }
 
-function newAction(){
-	var parentNode1 = this.parentNode;
-	var node = parentNode1.childNodes[1].value;
-	var selection = this.previousSibling;
-	//var action = selection.options[selection.selectedIndex].text;
-	var exitCode = selection.previousSibling.value;
-	var actionList = this.parentNode.parentNode.childNodes[1];
-	var newAction = document.createElement('li');
-	newAction.innerHTML = exitCode + ": " + action;
-	var remove = document.createElement('button');
-	remove.addEventListener("click", function() {
-					var thisParent = this.parentNode;
-					var thatParent = thisParent.parentNode;
-					thatParent.removeChild(thisParent);
-				});
-	actionList.appendChild(node);
+function addAction(element){
+	var actionList = element.parentNode.previousSibling.previousSibling;
+	var selection = element.previousSibling.previousSibling;
+	var exitCode = element.previousSibling.previousSibling.previousSibling.previousSibling.value;
+	var removeButton = document.createElement('button');
+	removeButton.setAttribute('class','removeAction');
+	removeButton.innerHTML = 'x';
+	var liElement = document.createElement('li');
+	liElement.innerHTML = exitCode+': '+selection.options[selection.selectedIndex].text;
+	removeButton.addEventListener('click',function(){
+					this.parentNode.parentNode.removeChild(this.parentNode);
+			});
+	liElement.appendChild(removeButton);
+	actionList.appendChild(liElement);
+
 }
 
 

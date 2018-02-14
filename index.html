@@ -16,16 +16,17 @@
 				<a class="navbar-brand" href="#">Taskmanager</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#" id="defaultPage" onclick="openPage('About', this, '#757575')">Home</a></li>
-				<li><a href="#" onclick="openPage('newTask', this, '#757575')">new Task</a></li>
-				<li><a href="#" id="task" onclick="openPage('Tasklist', this, '#757575')">Tasklist</a></li>
-				<li><a href="#" onclick="openPage('Settings', this, '#757575')">Settings</a></li>
+				<li><a class="topNav" href="#"  onclick="openPage('About', this)">Home</a></li>
+				<li><a class="topNav" href="#" id="defaultPage" onclick="openPage('newTask', this)">new Task</a></li>
+				<li><a class="topNav" href="#" id="task" onclick="openPage('Tasklist', this)">Tasklist</a></li>
+				<li><a class="topNav" href="#" onclick="openPage('Settings', this)">Settings</a></li>
 			</ul>
 		</div>
 	</nav>
 
-	<div>
+	<div class='container'>
 		<br clear="all">
+			<!--Home-->
 			<div id="About" class="tabcontent">
 				<div class='col-xs-12'>
 					<pre class="Settings">
@@ -35,6 +36,7 @@ superkrasser taskmanager Beschreibung und anderes Zeug
 				</div>
 			</div>
 			
+			<!--NEW TASK-->
 			<div id="newTask" class="tabcontent">
 				<div id="newTaskDiv">
 					<div name="left" class = "col-sm-7 left">
@@ -67,7 +69,7 @@ superkrasser taskmanager Beschreibung und anderes Zeug
 					<div name="right" class="col-sm-5">
 					
 						<label for="taskID">Taskname:</label>
-						<input type="text" class="form-control taskname" id="taskID">
+						<input type="text" class="form-control taskname" id="taskname">
 					
 						<div name="oben" >
 							<h4>Settings</h4>	
@@ -77,39 +79,41 @@ superkrasser taskmanager Beschreibung und anderes Zeug
 						</div>
 						<input type="text" class="cronInput"></input>
 						
-						<div name="unten" class="test">
+						<div id='aaa' name="unten" class="test">
 							<h4>Execute-Code</h4>			
 							<h6>Actionlist</h4>
-							<ul></ul>
-							<div class='bottomElement'>
-								<input type="number" class="selectNumber"></input>
-								<select type="combobox" class="exitcodeBox">
+							<ul class="actionList"></ul>
+							<div id='hm' class='bottomElement'>
+								<input id="exitCodeID" type="number" class="selectNumber" value="0"></input>
+								<select id="actionSelectionID" type="combobox" class="exitcodeBox">
 									<option>reboot</option>
 									<option>shutdown</option>
 									<option>tg-message</option>
 								</select>
-								<button type="button" class="btn" onclick="newAction()">add</button>
+								<button type="button" class="btn" onclick="addAction(this)">add</button>
 							</div>	
 						</div>
 						
 					</div>
 				</div>
-				<button type="button" class="btn btn-info btn-block align-self-end" onclick="newTask('affe')">create new Task</button>
+				<button type="button" class="btn btn-info btn-block align-self-end" onclick="newTask()">create new Task</button>
 			</div>
 
+			<!--TASKLIST-->
 			<div id="Tasklist" class="tabcontent">
-				<form class="navbar-form navbar-left" action="/action_page.php">
+				<form class="navbar-form navbar-left" > <!-- action="/action_page.php"-->
 					<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search">
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="button" class="btn">Submit</button> <!-- type=submit -->
 				</form>
 				<div id="mainTaskList" ></div>
 			</div>
 
+			<!--SETTINGS-->
 			<div id="Settings" class="tabcontent">
 				<div class="col-md-12">
-					<pre class="Settings">Alle Settings die so ein Affenserver haben kann</pre>
+					<pre class="Settings">Alle Settings die so ein Server haben kann</pre>
 					<div class='btn-group'>
 						<button class='btn btn-primary'>Export Task(s)</button>
 						<button class='btn btn-primary'>Export All</button>
@@ -121,11 +125,12 @@ superkrasser taskmanager Beschreibung und anderes Zeug
 		</br>
 	</div>
 <div class="footer">
-  <p>MiniPage für Minipimmel</p>
+  <p>Marco Schlicht, Mohamet Al Gadafi, Nikola Mandic</p>
 </div>
 </body> 
 
 
 <script>document.getElementById('defaultPage').click();</script>
+
 </html> 
 
